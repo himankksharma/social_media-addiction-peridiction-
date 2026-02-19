@@ -1,12 +1,13 @@
 import streamlit as st
 import pickle
-
-st.title("Addiction_Prediction!")
-
 st.set_page_config(
     page_title="Addiction Prediction",
     page_icon=":smoking:",
     layout="centered",)
+
+st.title("Addiction_Prediction!")
+
+
 def load_model():
     return pickle.load(open('rf_model.pkl', 'rb'))
     
@@ -36,4 +37,5 @@ st.write("value entered:", Conflicts_Over_Social_Media)
 
 if st.button("Predict"):
     prediction = model.predict([[ Avg_Daily_Usage_Hours, Affects_Academic_Performance, Sleep_Hours_Per_Night, Mental_Health_Score, Conflicts_Over_Social_Media]])
+
     st.success(f"Prediction: {prediction[0]}")
